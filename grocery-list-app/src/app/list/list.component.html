@@ -1,0 +1,16 @@
+<div *ngIf="productList().length">
+    <h1>Your List</h1>
+    <div *ngFor="let item of productList()">
+        <span class="item-grid">
+            <h2 class="name-item"> {{item.product.product_name}}</h2>
+            <button (click)="removeFromList(item.product)">-</button>
+            <button class="unity-item"> {{item.quantity}}{{item.product.amount_unit}}</button>
+            <button (click)="addToList(item.product)">+</button>
+        </span>
+    </div>
+    <br>
+    <br>
+    <button (click)="openListDialog(productList())">Export</button>
+</div>
+
+<h1 *ngIf="!productList().length">Your List is Empty</h1>

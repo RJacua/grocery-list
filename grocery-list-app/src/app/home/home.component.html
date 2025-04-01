@@ -1,0 +1,6 @@
+<h1>Recipes</h1>
+
+<div *ngFor="let recipe of recipes()">
+    <br>
+    <button (click)="openDialog(recipe)">{{recipe.recipe_name}}</button>
+</div>

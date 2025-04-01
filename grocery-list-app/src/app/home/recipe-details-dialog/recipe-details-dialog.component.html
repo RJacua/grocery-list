@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{data.recipe_name}}</h2>
+<mat-dialog-content>
+    <div *ngFor="let item of data.items">
+        <p>{{item.product.product_name}} - x{{item.quantity}}{{item.product.amount_unit}}</p>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button (click)="closeRecipeDialog()">Cancel</button>
+    <button (click)="removeRecipeFromList(data)">Remove</button>
+    <button cdkFocusInitial (click)="addRecipeToList(data)">Add</button>
+</mat-dialog-actions>

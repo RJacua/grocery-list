@@ -1,0 +1,16 @@
+<div  class="details">
+    <h3>{{ selectedProduct()?.product_name }}</h3>
+    <br>
+    <div class="image-wrapper">
+        <img [src]="selectedProduct()?.product_image" [alt]="selectedProduct()?.product_name" />
+        <div class="description">
+        </div>
+    </div>
+    <br>
+
+    <div class="quantity-selector">
+        <button (click)="removeFromList(selectedProduct()!)">-</button>
+        <button class="unity-item">{{ quantity() ?? 0 }}</button>
+        <button (click)="addToList(selectedProduct()!)">+</button>
+    </div>
+</div>

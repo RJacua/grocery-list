@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Your List</h2>
+<mat-dialog-content>
+    <!-- <div *ngFor="let item of data">
+        <p>{{item.product.product_name}} - x{{item.quantity}}{{item.product.amount_unit}}</p>
+    </div> -->
+    <textarea [formControl]="listArea" name="listArea" rows="25" cols="50" ngValue=""></textarea>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button (click)="closeListDialog()">Back</button>
+    <button cdkFocusInitial (click)="copyListToClipboard()" id="copyButton">Copy</button>
+</mat-dialog-actions>
