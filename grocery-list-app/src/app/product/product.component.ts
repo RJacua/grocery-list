@@ -9,6 +9,7 @@ import { ROUTER_TOKENS } from '../app.routes';
 import { Category, Product } from '../models';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { ProductService } from '../services/product.service';
+import { ListService } from '../services/list.service';
 
 @Component({
   selector: 'app-product',
@@ -25,7 +26,7 @@ import { ProductService } from '../services/product.service';
 })
 
 export class ProductComponent implements OnInit {
-
+  readonly listService = inject(ListService);
   private categoryService = inject(CategoryService);
   private productService = inject(ProductService);
 
@@ -69,13 +70,14 @@ export class ProductComponent implements OnInit {
   }
 
   listenCategoryChange() {
-    this.categoryForm.valueChanges.pipe(
-    ).subscribe({
-      next: (value) => {
-        this.categoryService.categorySelected(value?.category_id ?? 0);
-        this.setCategoryRoute();
-      },
-    })
+    this.categoryForm.valueChanges
+      // .pipe(tap((value) => console.log("value: ", value?.id)))
+      .subscribe({
+        next: (value) => {
+          this.categoryService.categorySelected(value?.id ?? 0);
+          this.setCategoryRoute();
+        },
+      })
   }
 
   setCategoryRoute(productName?: string | null) {
@@ -94,5 +96,12 @@ export class ProductComponent implements OnInit {
       prod.product_name === this.selectedProduct()?.product_name))
     || false);
 
+  addToList(product: Product) {
+    this.listService.incrementListItem(product);
+  }
+
+  getQuantity(product_name: string): number {
+    return this.listService.getQuantity(product_name);
+  }
 
 }

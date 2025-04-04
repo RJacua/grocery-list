@@ -1,0 +1,14 @@
+<div class="details">
+    <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+        <br>
+        <label for="categoryName">Category Name: </label>
+        <input type="text" id="categoryName" name="categoryName" formControlName="categoryName"><br><br>
+        <div *ngIf="categoryName.errors?.['required'] && categoryName.touched">Category Name is Required</div>
+
+        <label for="quantity">Category Order: </label>
+        <input type="number" id="quantity" name="quantity" formControlName="categoryOrder" min="1">
+        <br>
+        <br>
+        <input type="submit" value="Submit" [disabled]="categoryForm.invalid">
+    </form>
+</div>

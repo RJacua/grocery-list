@@ -1,6 +1,6 @@
 <section class="main-content">
   <div class="category-wrapper">
-    <div class="side-nav-wrapper">
+    <div>
       <h1>Add a product:</h1>
       <label for="category">Category: </label>
 
@@ -9,28 +9,38 @@
         <option *ngFor="let cat of categories()" [ngValue]="cat">{{ cat.category_name }}</option>
       </select>
 
+
       <p *ngIf="categoriesError()">{{ categoriesError() }}</p>
-
-      <div *ngIf="categoriesWithProducts() as categories">
-
-        <div *ngFor="let category of categories" class="button-grid">
-          <br>
-          <div *ngFor="let product of category.products">
-            <br>
-            <!-- <button [routerLink]="['./']" [queryParams]="{product: product.product_name}" queryParamsHandling="merge">{{
-              product.product_name }}</button> -->
-            <button (click)="setCategoryRoute(product.product_name)"></button>
-            <p class="product-name">{{ product.product_name }}</p>
+      <div class="button-grid">
+        <div *ngIf="categoriesWithProducts() as categories">
+          <div class="button-grid">
+            <ng-container *ngFor="let category of categories">
+              <ng-container *ngFor="let product of category.products">
+                <div class="product-tile">
+                  <button (click)="addToList(product)">
+                    <!-- Aqui entra a imagem ou ícone futuramente -->
+                    <img [src]="product.product_image" alt="{{ product.product_name }}" />
+                    <!-- Exemplo de badge de quantidade futura -->
+                    <!-- <span class="quantity-badge">2</span> -->
+                    <span class="quantity-badge" *ngIf="getQuantity(product.product_name) > 0">
+                      {{ getQuantity(product.product_name) }}
+                    </span>
+                  </button>
+                  <p class="product-name">{{ product.product_name }}</p>
+                </div>
+              </ng-container>
+            </ng-container>
           </div>
         </div>
+
       </div>
     </div>
-    <div class="detail-wrapper">
-      <div *ngIf="isInCategory()">
-        <app-product-detail *ngIf="selectedProduct$ | async as product"
-          [selectedProduct]="product"></app-product-detail>
-      </div>
-      <div *ngIf="!isInCategory() && (selectedProduct$ | async)">Product Not Found in the Selected Category</div>
-    </div>
+    <!-- <div class="detail-wrapper">
+        <div *ngIf="isInCategory()">
+          <app-product-detail *ngIf="selectedProduct$ | async as product"
+            [selectedProduct]="product"></app-product-detail>
+        </div>
+        <div *ngIf="!isInCategory() && (selectedProduct$ | async)">Product Not Found in the Selected Category</div>
+      </div> -->
   </div>
 </section>

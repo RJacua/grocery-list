@@ -30,7 +30,7 @@ export const ROUTES: Routes = [
   },
   {
     path: ROUTER_TOKENS.CREATE,
-    loadComponent: () => import('./form/form.component').then(m => m.FormComponent)
+    loadComponent: () => import('./create/form.component').then(m => m.FormComponent)
   },
   {
     path: ROUTER_TOKENS.LIST,

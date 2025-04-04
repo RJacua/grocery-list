@@ -1,12 +1,12 @@
 export interface Category {
-    category_id: number;
+    id: number;
     category_name: string;
     products: Product[];
   }
   
   
   export interface Product {
-    product_id: number;
+    id: number;
     category_id: number;
     product_name: string;
     amount_unit: string;
@@ -14,7 +14,7 @@ export interface Category {
   }
   
   export interface Recipe {
-    recipe_id: number;
+    id: number;
     recipe_name: string;
     items: ListItem[];
   }

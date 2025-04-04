@@ -45,6 +45,4 @@ export class ListComponent {
       this.listService.decrementListItem(product);
     }
 
-  
-
   }

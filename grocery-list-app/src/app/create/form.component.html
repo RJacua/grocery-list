@@ -1,0 +1,18 @@
+<section class="main-content">
+    <h1>Create New:</h1>
+    <div>
+        <button [routerLink]="['./']" [queryParams]="{formType: 'category'}" name="category">Category</button>
+    </div>
+    
+    <div>
+        <br>
+        <button [routerLink]="['./']" [queryParams]="{formType: 'product'}" name="product">Product</button>
+    </div>
+    
+    <div class="category-wrapper">
+        <div class="detail-wrapper">
+            <app-category-form *ngIf="formType === 'category'"></app-category-form>
+            <app-product-form *ngIf="formType === 'product'"></app-product-form>
+        </div>
+    </div>
+</section>

@@ -87,5 +87,10 @@ export class ListService {
 
     console.log(this.productList());
   }
+
+  getQuantity(product_name: String): number {
+    let quantity = this.productList().find(i => i.product.product_name === product_name)?.quantity ?? 0;
+    return quantity
+  }
 }
 

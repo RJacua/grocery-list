@@ -34,17 +34,25 @@ export class ProductService {
 
   readonly selectedProductSignal = toSignal(this.selectedProduct$);
 
-  getProductsUrl(categoryId: number) {
-    // console.log(categoryId);
-    return this.productsUrlPrefix + "?category_id=" + categoryId;
-  }
+    getProductsUrl(categoryId: number) {
+      // console.log(categoryId);
+      return this.productsUrlPrefix + "?category_id=" + categoryId;
+    }
 
   getProductByName(name: string): Observable<Product | null> {
 
     return this.http.get<Product[]>(this.productsUrlPrefix + "?product_name=" + name).pipe(
       map((p) => p.length ? p[0] : null)
     )
-    
   }
+
+   saveProduct(newProd: any): Observable<Product> {
+          const headers = { headers: { 'Content-Type': 'application/json' } };
+
+          let newProduct: Partial<Product> = { category_id: newProd.category.id, product_name: newProd.productName, amount_unit: " " + newProd.unit, product_image: "" }
+          console.log("newProduct: ", newProduct)
+          return this.http.post<Product>('api/products', newProduct, headers);
+      }
+  
 
 }
